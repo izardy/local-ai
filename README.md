@@ -1,10 +1,10 @@
-# Serve Open Source AI Models
+# Serving Open Source AI Models
 ## What is Open Source AI Models ?
 - Open Source AI Models are machine learning frameworks and models that are freely available to the public, allowing anyone to use, study, modify, and distribute them.
     - Use cases include:
-    > Computer Vision, Text Generation, Image Generation, Speech Recognition, Translation etc
+        - Computer Vision, Text Generation, Image Generation, Speech Recognition, Translation etc
     - Example of Popular Open Source models:
-    > BERT, LLaMA, T5, Stable Diffusion
+        - BERT, LLaMA, T5, Stable Diffusion
 
 ## Common Platform to Serve AI Models in Local Machines
 - Few popular platforms for serving AI models locally.
