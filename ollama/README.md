@@ -7,19 +7,19 @@
 
 ### Show Modelfile
 - A Modelfile is a configuration file used in Ollama that serves as a blueprint for customizing and defining how a language model should behave. It contains several key components and instructions that control various aspects of the model's operation.
-- Check existing Modelfile for specific LLM
-    - Check install model in Ollama
- 
-    ```
-    ollama ls
-    ```
+    - Check existing Modelfile for specific LLM
+        - Check install model in Ollama
     
+        ```
+        ollama ls
+        ```
+        
 
-    - Check Modelfile
- 
-    ```
-    ollama show --modelfile modelname
-    ```
+        - Check Modelfile
+    
+        ```
+        ollama show --modelfile modelname
+        ```
 
 ### Modelfile Parameters Configuration  
 - Example of Ollama Modelfile structure
