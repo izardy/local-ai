@@ -7,10 +7,10 @@
 - The deployment capability depends on your hardware specifications:
 
     - **Hardware Requirements:**
-    - CPU: Multi-core processor
-    - RAM: Minimum 8GB (16GB+ recommended)
-    - GPU: NVIDIA GPU with CUDA support (optional but recommended)
-    - Storage: Sufficient free space for model weights
+        - CPU: Multi-core processor
+        - RAM: Minimum 8GB (16GB+ recommended)
+        - GPU: NVIDIA GPU with CUDA support (optional but recommended)
+        - Storage: Sufficient free space for model weights
 
     **Note:** Model deployment capabilities are directly correlated with your hardware specifications. Systems with higher-end components (powerful CPUs, more RAM, and dedicated GPUs) can handle larger language models with higher parameter counts more efficiently.
 
