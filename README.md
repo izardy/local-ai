@@ -1,4 +1,25 @@
 # Serving Open Source AI Models
+
+## HuggingFace to Local Deployment
+- This repository documents three common approaches to deploy and serve HuggingFace open-source AI models locally.
+
+## System Requirements
+- The deployment capability depends on your hardware specifications:
+
+    - **Hardware Requirements:**
+    - CPU: Multi-core processor
+    - RAM: Minimum 8GB (16GB+ recommended)
+    - GPU: NVIDIA GPU with CUDA support (optional but recommended)
+    - Storage: Sufficient free space for model weights
+
+    **Note:** Model deployment capabilities are directly correlated with your hardware specifications. Systems with higher-end components (powerful CPUs, more RAM, and dedicated GPUs) can handle larger language models with higher parameter counts more efficiently.
+
+    For example:
+    - Entry-level systems: Suitable for smaller models (1-3B parameters)
+    - Mid-range systems: Can handle medium-sized models (3-7B parameters)
+    - High-end systems: Capable of running larger models (7B+ parameters)
+
+
 ## What is Open Source AI Models ?
 - Open Source AI Models are machine learning frameworks and models that are freely available to the public, allowing anyone to use, study, modify, and distribute them.
     - Use cases include:
@@ -81,3 +102,4 @@
     - Full control over model parameters
     - Ability to modify and fine-tune models
     - Freedom to experiment with different model architectures
+
