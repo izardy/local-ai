@@ -1,56 +1,56 @@
 - Check existing Modelfile for specific LLM
-    > Check install model in Ollama
-    <small>
+    - Check install model in Ollama
+ 
     ```
     ollama ls
     ```
-    </small>
+    
 
-    > Check Modelfile
-    <small>
+    - Check Modelfile
+ 
     ```
     ollama show --modelfile modelname
     ```
-    </small>
+    
 - Example of Ollama Modelfile structure
 
-    > Specify the base model
-    <small>
+    - Specify the base model
+ 
     ```
     FROM llama2
     ```
-    </small>
     
-    > Configure model parameters
-    <small>
+    
+    - Configure model parameters
+ 
     ```
     PARAMETER temperature 0.7
     PARAMETER top_k 40
     PARAMETER top_p 0.9
     ```
-    </small>
     
-    > Define the template for input prompts
-    <small>
+    
+    - Define the template for input prompts
+ 
     ```
     TEMPLATE """
     USER: {{.Prompt}}
     ASSISTANT: Let me help you with that.
     """
     ```
-    </small>
     
-    > Set the system message that defines the AI's behavior
-    <small>
+    
+    - Set the system message that defines the AI's behavior
+ 
     ```
     SYSTEM """
     You are a helpful and knowledgeable assistant who specializes in explaining technical concepts clearly and concisely. Please provide accurate and practical information while maintaining a professional tone.
     """
     ```
-    </small>
+    
 - Example of Modelfile (paste the following code in a non extension file name Modelfile)
-    > Llama-3.2
-    <small>
+    - Llama-3.2
+ 
     ```
     # Modelfile
     FROM "Llama-3.2-11B-Vision-Instruct.Q4_K_M.gguf" # This specifies that the model is based on Meta's LLaMA 3 70B model (quantized version)
@@ -102,4 +102,4 @@
     PARAMETER stop <|end_header_id|>
     PARAMETER stop <|eot_id|>
     ```
-    </small>
+    
