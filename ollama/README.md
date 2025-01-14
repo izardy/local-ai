@@ -21,42 +21,43 @@
         ollama show --modelfile modelname
         ```
 
-### Modelfile Parameters Configuration  
-- Example of Ollama Modelfile structure
+### Modelfile Parameters Configuration
+- Modelfile parameters are settings that control how the language model generates and processes responses.  
+    - Example of Ollama Modelfile structure
 
-    - Specify the base model
- 
-    ```
-    FROM llama2
-    ```
+        - Specify the base model
     
+        ```
+        FROM llama2
+        ```
+        
+        
+        - Configure model parameters
     
-    - Configure model parameters
- 
-    ```
-    PARAMETER temperature 0.7
-    PARAMETER top_k 40
-    PARAMETER top_p 0.9
-    ```
+        ```
+        PARAMETER temperature 0.7
+        PARAMETER top_k 40
+        PARAMETER top_p 0.9
+        ```
+        
+        
+        - Define the template for input prompts
     
+        ```
+        TEMPLATE """
+        USER: {{.Prompt}}
+        ASSISTANT: Let me help you with that.
+        """
+        ```
+        
+        
+        - Set the system message that defines the AI's behavior
     
-    - Define the template for input prompts
- 
-    ```
-    TEMPLATE """
-    USER: {{.Prompt}}
-    ASSISTANT: Let me help you with that.
-    """
-    ```
-    
-    
-    - Set the system message that defines the AI's behavior
- 
-    ```
-    SYSTEM """
-    You are a helpful and knowledgeable assistant who specializes in explaining technical concepts clearly and concisely. Please provide accurate and practical information while maintaining a professional tone.
-    """
-    ```
+        ```
+        SYSTEM """
+        You are a helpful and knowledgeable assistant who specializes in explaining technical concepts clearly and concisely. Please provide accurate and practical information while maintaining a professional tone.
+        """
+        ```
     
 - Example of Modelfile (paste the following code in a non extension file name Modelfile)
     - Llama-3.2
