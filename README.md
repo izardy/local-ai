@@ -1,105 +1,65 @@
-- **Check existing Modelfile for specific LLM**
-    > Check install model in Ollama
-    
-    ```
-    ollama ls
-    ```
-    
+# Serve Open Source AI Models
+## What is Open Source AI Models ?
+- Open Source AI Models are machine learning frameworks and models that are freely available to the public, allowing anyone to use, study, modify, and distribute them.
+    - Use cases include:
+    > Computer Vision, Text Generation, Image Generation, Speech Recognition, Translation etc
+    - Example of Popular Open Source models:
+    > BERT, LLaMA, T5, Stable Diffusion
 
-    > Check Modelfile
-    
-    ```
-    ollama show --modelfile modelname
-    ```
-    
-- **Example of Ollama Modelfile structure**
+## Common Platform to Serve AI Models in Local Machines
+- Few popular platforms for serving AI models locally.
+    - Ollama
+        - Supports various models like Llama, Mistral, and Gemma
+        - Easy to use with simple API interface
+        - Available for macOS, Linux, and Windows
+        - Deployment on finetuned model in gguf format
+    - Transformers
+        - Support for model loading and inference
+        - Cross framework compatibility (Pytorch, Tensorflow)
+        - Capability to finetuning
+        - Basic usage example
+        ```
+        from transformers import pipeline
 
-    > Specify the base model
-    
-    ```
-    FROM llama2
-    ```
-   
-    
-    > Configure model parameters
-    
-    ```
-    PARAMETER temperature 0.7
-    PARAMETER top_k 40
-    PARAMETER top_p 0.9
-    ```
-    
-    
-    > Define the template for input prompts
-    
-    ```
-    TEMPLATE """
-    USER: {{.Prompt}}
-    ASSISTANT: Let me help you with that.
-    """
-    ```
-    
-    
-    > Set the system message that defines the AI's behavior
-    
-    ```
-    SYSTEM """
-    You are a helpful and knowledgeable assistant who specializes in explaining technical concepts clearly and concisely. Please provide accurate and practical information while maintaining a professional tone.
-    """
-    ```
-    
-- **Example of Modelfile (paste the following code in a non extension file name Modelfile)**
-    > Llama-3.2
-    
-    ```
-    # Modelfile
-    FROM C:\Users\***\.ollama\models\blobs\***
-    TEMPLATE """<|start_header_id|>system<|end_header_id|>
-    
-    Cutting Knowledge Date: December 2023
-    
-    {{ if .System }}{{ .System }}
-    {{- end }}
-    {{- if .Tools }}When you receive a tool call response, use the output to format an answer to the orginal user question.
-    
-    You are a helpful assistant with tool calling capabilities.
-    {{- end }}<|eot_id|>
-    {{- range $i, $_ := .Messages }}
-    {{- $last := eq (len (slice $.Messages $i)) 1 }}
-    {{- if eq .Role "user" }}<|start_header_id|>user<|end_header_id|>
-    {{- if and $.Tools $last }}
-    
-    Given the following functions, please respond with a JSON for a function call with its proper arguments that best answers the given prompt.
-    
-    Respond in the format {"name": function name, "parameters": dictionary of argument name and its value}. Do not use variables.
-    
-    {{ range $.Tools }}
-    {{- . }}
-    {{ end }}
-    {{ .Content }}<|eot_id|>
-    {{- else }}
-    
-    {{ .Content }}<|eot_id|>
-    {{- end }}{{ if $last }}<|start_header_id|>assistant<|end_header_id|>
-    
-    {{ end }}
-    {{- else if eq .Role "assistant" }}<|start_header_id|>assistant<|end_header_id|>
-    {{- if .ToolCalls }}
-    {{ range .ToolCalls }}
-    {"name": "{{ .Function.Name }}", "parameters": {{ .Function.Arguments }}}{{ end }}
-    {{- else }}
-    
-    {{ .Content }}
-    {{- end }}{{ if not $last }}<|eot_id|>{{ end }}
-    {{- else if eq .Role "tool" }}<|start_header_id|>ipython<|end_header_id|>
-    
-    {{ .Content }}<|eot_id|>{{ if $last }}<|start_header_id|>assistant<|end_header_id|>
-    
-    {{ end }}
-    {{- end }}
-    {{- end }}"""
-    PARAMETER stop <|start_header_id|>
-    PARAMETER stop <|end_header_id|>
-    PARAMETER stop <|eot_id|>    
-```
-    
+        # Load a pre-trained model for text generation
+        generator = pipeline('text-generation', model='gpt2')
+
+        # Generate text
+        result = generator("The quick brown fox", max_length=50)
+
+        ```
+        - Model version control example
+        ```
+        from transformers import AutoModel, AutoTokenizer
+
+        # Load model and tokenizer
+        tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
+        model = AutoModel.from_pretrained("bert-base-uncased")
+
+        # Save locally
+        model.save_pretrained("./my_saved_model")
+        tokenizer.save_pretrained("./my_saved_model")
+
+        ```
+        - Memory optimastion example
+        ```
+        # Load in 8-bit precision for memory efficiency
+        from transformers import AutoModelForCausalLM
+        model = AutoModelForCausalLM.from_pretrained("gpt2", load_in_8bit=True)
+
+        ```
+    - VLLM
+        - PagedAttention technology for optimized memory usage
+        - OpenAI-compatible API server
+        - Support for multiple model architectures
+        - Basic usage example
+        ```
+        from vllm import LLM
+
+        llm = LLM(model="facebook/opt-125m")
+        outputs = llm.generate("Tell me a story", max_tokens=100)
+
+        ```
+
+
+
